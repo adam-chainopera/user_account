@@ -9,7 +9,6 @@ from base64 import b64encode
 from nacl.signing import SigningKey
 import base58
 import requests
-import json
 
 app = Flask(__name__)
 
@@ -132,5 +131,6 @@ def get_solana_bal(WALLET_ADDRESS):
     return sol
 
 if __name__ == '__main__':
-    # get_solana_bal()
-    app.run(debug=True)
+    # local dev: python app.py
+    # production: gunicorn --bind 0.0.0.0:8000 --workers 4 app:app
+    app.run(host="0.0.0.0", port=8000, debug=True)
